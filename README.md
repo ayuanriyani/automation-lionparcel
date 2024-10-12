@@ -31,11 +31,16 @@ For perform API testing in Robot Framework. please prepare libraries for our tes
 
 
 
-https://github.com/ayuanriyani/AutomationAPI-robotframework/assets/17001815/65ebb784-92f4-4421-b20e-d9566ca7528c
+
+https://github.com/user-attachments/assets/e8373063-bee6-4479-ba78-c37d6f1937c9
 
 
 
-https://github.com/ayuanriyani/AutomationAPI-robotframework/assets/17001815/51b3e026-3a0e-47f6-b23c-7db4eb23151d
+
+![report API dan Web](https://github.com/user-attachments/assets/e327d555-7d29-4b3f-8fe2-3792bcce10c3)
+
+
+
 
 
 
