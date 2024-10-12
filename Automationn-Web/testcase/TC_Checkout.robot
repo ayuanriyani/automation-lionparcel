@@ -1,5 +1,6 @@
 
 *** Settings ***
+Documentation      Journey user to login , add product and checkout
 Library            SeleniumLibrary
 Library            Collections
 Resource           ../service/resource.robot
@@ -15,7 +16,7 @@ ${last-name}    Ayuanriyani
 
 
 *** Test Cases ***
-Scenario: User logs in, adds product to cart, and checks out
+Scenario: User login, add product to cart and checkout
         Given the browser is opened
         When The user logs in with valid credentials
         And The user adds a product to the cart
@@ -47,6 +48,9 @@ The user adds a product to the cart
     ${cart_description}=    Get Text    xpath=//div[@class='inventory_item_name']
     Should Be Equal    ${cart_description}     ${Product}
 
+    ${get_qty}=    Get Text    xpath=//div[@class='cart_quantity']
+    Should Be Equal    ${get_qty}    ${Qty}
+
 The user next proceeds to checkout
     ${buttoncheckout}=    Get Text    id=checkout
     Should Be Equal    ${buttoncheckout}     Checkout
@@ -58,7 +62,14 @@ The user fills out checkout information
     Input Text    id=last-name     ${last-name}
     Input Text    id=postal-code    ${postal-code}
     Click Button  id=continue
-    Wait Until Element Is Visible    xpath://button[@id='finish']    5s
+
+    Element Should Be Visible    xpath=//div[@class='cart_item']
+    Wait Until Element Contains    xpath=//*[contains(text(),'Payment Information')]    Payment Information    5s
+    Wait Until Element Contains    xpath=//*[contains(text(),'Shipping Information')]    Shipping Information    5s
+    Wait Until Element Contains    xpath=//*[contains(text(),'Price Total')]    Price Total    5s
+    Wait Until Element Contains    xpath=//*[contains(text(),'Total')]    Total    5s
+
+    Wait Until Element Is Visible    xpath=//button[@id='finish']    5s
 
 The user should successfully complete the purchase
     Wait Until Element Is Visible    xpath=//span[text()='Checkout: Overview']    5s    
